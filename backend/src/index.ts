@@ -180,7 +180,7 @@ app.get("/admin/bookings", (req: Request<{}, {}, {}, { upcoming?: string }>, res
 });
 
 app.use(express.static(path.join(__dirname, "../../frontend/dist")));
-app.get("*", (_req: Request, res: Response) => {
+app.use((_req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
 });
 
