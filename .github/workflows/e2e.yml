@@ -30,5 +30,19 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
+      - name: Start backend server
+        run: cd backend && npm run dev
+        env:
+          PORT: 3001
+        background: true
+
+      - name: Start frontend server
+        run: cd frontend && npm run dev
+        background: true
+
+      - name: Wait for servers to be ready
+        run: |
+          npx wait-on http://localhost:3000 --timeout 60000 || exit 1
+
       - name: Run E2E tests
         run: npm run test:e2e
