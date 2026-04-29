@@ -10,21 +10,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-interface ErrorResponse {
-  message: string;
-}
-
-interface CreateEventTypeRequest {
-  name: string;
-  description: string;
-  durationMinutes: number;
-}
-
-interface UpdateEventTypeRequest {
-  name?: string;
-  description?: string;
-  durationMinutes?: number;
-}
+app.use((req, _res, next) => {
+  if (req.path.startsWith('/api')) {
+    req.url = req.url.replace(/^\/api/, '');
+  }
+  next();
+});
 
 interface GuestBookingRequest {
   slotId: number;
