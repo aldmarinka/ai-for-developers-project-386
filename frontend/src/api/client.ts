@@ -19,7 +19,15 @@ async function fetchApi<T>(url: string, options?: RequestInit): Promise<T> {
   });
 
   if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
+    let errorMessage = `HTTP error! status: ${response.status}`;
+    try {
+      const errorData = await response.clone().json();
+      if (errorData.message) {
+        errorMessage = errorData.message;
+      }
+    } catch {
+    }
+    throw new Error(errorMessage);
   }
 
   return response.json();
