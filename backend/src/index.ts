@@ -179,9 +179,9 @@ app.get("/admin/bookings", (req: Request<{}, {}, {}, { upcoming?: string }>, res
   res.json(bookings);
 });
 
-app.use(express.static(path.join(__dirname, "../../frontend/dist")));
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
 app.use((_req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
 
 const PORT = process.env.PORT || 3001;
