@@ -8,3 +8,4 @@ dist/
 
 # Dependency directories
 node_modules/
+test-results/
