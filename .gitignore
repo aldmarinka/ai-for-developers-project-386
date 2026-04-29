@@ -1,5 +1,6 @@
 # MacOS
 .DS_Store
+.idea
 
 # Default TypeSpec output
 tsp-output/
